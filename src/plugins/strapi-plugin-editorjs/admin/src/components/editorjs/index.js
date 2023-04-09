@@ -13,7 +13,6 @@ import customTools from "../../config/customTools";
 import MediaLibAdapter from "../medialib/adapter";
 import MediaLibComponent from "../medialib/component";
 import { changeFunc, getToggleFunc } from "../medialib/utils";
-import { get } from "lodash";
 
 const Editor = ({ onChange, name, value }) => {
   const [editorInstance, setEditorInstance] = useState();
@@ -72,16 +71,6 @@ const Editor = ({ onChange, name, value }) => {
     }
   }, [value]);
 
-  // console.log(customTools, "customTools");
-  const tools = customTools({ superscript: true });
-  // const superscript = get(
-  //   pluginOptions,
-  //   "editorjs.customTools.superscript",
-  //   false
-  // );
-
-  // console.log(superscript, "superscript");
-
   return (
     <>
       <div
@@ -103,7 +92,7 @@ const Editor = ({ onChange, name, value }) => {
             console.log(api, newData);
             handleValueChange(newData);
           }}
-          tools={{ ...customImageTool, ...tools, ...requiredTools }}
+          tools={{ ...customImageTool, ...customTools, ...requiredTools }}
           instanceRef={(instance) => setEditorInstance(instance)}
         />
       </div>

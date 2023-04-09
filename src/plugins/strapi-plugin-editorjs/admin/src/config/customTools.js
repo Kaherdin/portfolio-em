@@ -1,26 +1,29 @@
 import PluginId from "../pluginId";
 
 import Embed from "@editorjs/embed";
-import InlineImage from "editorjs-inline-image";
-import Table from "@editorjs/table";
 
 import List from "@editorjs/list";
 import LinkTool from "@editorjs/link";
-import Raw from "@editorjs/raw";
+
 // import Header from '@editorjs/header'
 import NestedList from "@editorjs/nested-list";
 
 const Header = require("editorjs-header-with-alignment");
 import Quote from "@editorjs/quote";
 import Marker from "@editorjs/marker";
-import CheckList from "@editorjs/checklist";
 import Delimiter from "@editorjs/delimiter";
-import InlineCode from "@editorjs/inline-code";
 import ColorPlugin from "editorjs-text-color-plugin";
 import Subscript from "editorjs2-subscript";
 const Superscript = require("editorjs2-superscript");
 const Paragraph = require("editorjs-paragraph-with-alignment");
 
+import CheckList from "@editorjs/checklist";
+import InlineCode from "@editorjs/inline-code";
+import InlineImage from "editorjs-inline-image";
+import Table from "@editorjs/table";
+import Raw from "@editorjs/raw";
+
+//Anchore
 !(function (e, n) {
   "object" == typeof exports && "object" == typeof module
     ? (module.exports = n())
@@ -367,86 +370,83 @@ const Paragraph = require("editorjs-paragraph-with-alignment");
   })();
 });
 
-const customTools = () => {
-  return {
-    embed: Embed,
-    anchorTune: AnchorTune,
-    list: {
-      class: List,
-      inlineToolbar: true,
+const customTools = {
+  embed: Embed,
+  anchorTune: AnchorTune,
+  list: {
+    class: List,
+    inlineToolbar: true,
+  },
+  paragraph: {
+    class: Paragraph,
+    inlineToolbar: true,
+  },
+  nestedlist: {
+    class: NestedList,
+    inlineToolbar: true,
+    config: {
+      defaultStyle: "unordered",
     },
-    paragraph: {
-      class: Paragraph,
-      inlineToolbar: true,
+  },
+  subscript: {
+    class: Subscript,
+  },
+  superscript: {
+    class: Superscript,
+  },
+  Color: {
+    class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
+    config: {
+      colorCollections: [
+        "#8cd5b0", //primary-300
+        "#3fb97b", //primary-500
+        "#266f4a", //primary-700
+        "#0d2519", //primary-900
+        "#a3a4cd", //secondary-300
+        "#6667ab", //secondary-500
+        "#3d3e67", //secondary-700
+        "#141522", //secondary-900
+        "#dedede", //gray-300
+        "#adb5bd", //gray-500
+        "#495057", //gray-700
+        "#4B4237",
+        "#D5A021",
+        "#EDE7D9",
+        "#BFDBF7",
+        "#732C2C",
+        "#420C14 ",
+        "#FFF",
+        "#000",
+      ],
+      defaultColor: "#FF1300",
+      type: "text",
     },
-    marker: {
-      class: Marker,
-      inlineToolbar: true,
+  },
+  LinkTool: {
+    class: LinkTool,
+    config: {
+      endpoint: `/api/${PluginId}/link`,
     },
-    delimiter: Delimiter,
-  };
+  },
+
+  header: {
+    class: Header,
+    inlineToolbar: true,
+    tunes: ["anchorTune"],
+  },
+  quote: {
+    class: Quote,
+    inlineToolbar: true,
+    config: {
+      quotePlaceholder: "Quote",
+      captionPlaceholder: "Quote`s author",
+    },
+  },
+  marker: {
+    class: Marker,
+    inlineToolbar: true,
+  },
+  delimiter: Delimiter,
 };
 
 export default customTools;
-
-// nestedlist: {
-//   class: NestedList,
-//   inlineToolbar: true,
-//   config: {
-//     defaultStyle: "unordered",
-//   },
-// },
-// subscript: {
-//   class: Subscript,
-// },
-// superscript: {
-//   class: Superscript,
-// },
-// Color: {
-//   class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
-//   config: {
-//     colorCollections: [
-//       "#8cd5b0", //primary-300
-//       "#3fb97b", //primary-500
-//       "#266f4a", //primary-700
-//       "#0d2519", //primary-900
-//       "#a3a4cd", //secondary-300
-//       "#6667ab", //secondary-500
-//       "#3d3e67", //secondary-700
-//       "#141522", //secondary-900
-//       "#dedede", //gray-300
-//       "#adb5bd", //gray-500
-//       "#495057", //gray-700
-//       "#4B4237",
-//       "#D5A021",
-//       "#EDE7D9",
-//       "#BFDBF7",
-//       "#732C2C",
-//       "#420C14 ",
-//       "#FFF",
-//       "#000",
-//     ],
-//     defaultColor: "#FF1300",
-//     type: "text",
-//   },
-// },
-// LinkTool: {
-//   class: LinkTool,
-//   config: {
-//     endpoint: `/api/${PluginId}/link`,
-//   },
-// },
-
-// header: {
-//   class: Header,
-//   inlineToolbar: true,
-//   tunes: ["anchorTune"],
-// },
-// quote: {
-//   class: Quote,
-//   inlineToolbar: true,
-//   config: {
-//     quotePlaceholder: "Quote",
-//     captionPlaceholder: "Quote`s author",
-//   },
-// },
