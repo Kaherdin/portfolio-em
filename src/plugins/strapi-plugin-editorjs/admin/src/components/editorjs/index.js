@@ -71,6 +71,8 @@ const Editor = ({ onChange, name, value }) => {
     }
   }, [value]);
 
+  console.log(customTools, "customTools");
+
   return (
     <>
       <div

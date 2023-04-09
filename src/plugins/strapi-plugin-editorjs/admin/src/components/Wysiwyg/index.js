@@ -43,7 +43,7 @@ const Wysiwyg = ({
     };
   }, []);
 
-  console.log("magic mike");
+  console.log("magic mike2");
 
   return (
     <Wrapper
