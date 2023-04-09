@@ -367,83 +367,86 @@ const Paragraph = require("editorjs-paragraph-with-alignment");
   })();
 });
 
-const customTools = {
-  embed: Embed,
-  anchorTune: AnchorTune,
-  list: {
-    class: List,
-    inlineToolbar: true,
-  },
-  paragraph: {
-    class: Paragraph,
-    inlineToolbar: true,
-  },
-  nestedlist: {
-    class: NestedList,
-    inlineToolbar: true,
-    config: {
-      defaultStyle: "unordered",
+const customTools = () => {
+  return {
+    embed: Embed,
+    anchorTune: AnchorTune,
+    list: {
+      class: List,
+      inlineToolbar: true,
     },
-  },
-  subscript: {
-    class: Subscript,
-  },
-  superscript: {
-    class: Superscript,
-  },
-  Color: {
-    class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
-    config: {
-      colorCollections: [
-        "#8cd5b0", //primary-300
-        "#3fb97b", //primary-500
-        "#266f4a", //primary-700
-        "#0d2519", //primary-900
-        "#a3a4cd", //secondary-300
-        "#6667ab", //secondary-500
-        "#3d3e67", //secondary-700
-        "#141522", //secondary-900
-        "#dedede", //gray-300
-        "#adb5bd", //gray-500
-        "#495057", //gray-700
-        "#4B4237",
-        "#D5A021",
-        "#EDE7D9",
-        "#BFDBF7",
-        "#732C2C",
-        "#420C14 ",
-        "#FFF",
-        "#000",
-      ],
-      defaultColor: "#FF1300",
-      type: "text",
+    paragraph: {
+      class: Paragraph,
+      inlineToolbar: true,
     },
-  },
-  LinkTool: {
-    class: LinkTool,
-    config: {
-      endpoint: `/api/${PluginId}/link`,
+    marker: {
+      class: Marker,
+      inlineToolbar: true,
     },
-  },
-
-  header: {
-    class: Header,
-    inlineToolbar: true,
-    tunes: ["anchorTune"],
-  },
-  quote: {
-    class: Quote,
-    inlineToolbar: true,
-    config: {
-      quotePlaceholder: "Quote",
-      captionPlaceholder: "Quote`s author",
-    },
-  },
-  marker: {
-    class: Marker,
-    inlineToolbar: true,
-  },
-  delimiter: Delimiter,
+    delimiter: Delimiter,
+  };
 };
 
 export default customTools;
+
+// nestedlist: {
+//   class: NestedList,
+//   inlineToolbar: true,
+//   config: {
+//     defaultStyle: "unordered",
+//   },
+// },
+// subscript: {
+//   class: Subscript,
+// },
+// superscript: {
+//   class: Superscript,
+// },
+// Color: {
+//   class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
+//   config: {
+//     colorCollections: [
+//       "#8cd5b0", //primary-300
+//       "#3fb97b", //primary-500
+//       "#266f4a", //primary-700
+//       "#0d2519", //primary-900
+//       "#a3a4cd", //secondary-300
+//       "#6667ab", //secondary-500
+//       "#3d3e67", //secondary-700
+//       "#141522", //secondary-900
+//       "#dedede", //gray-300
+//       "#adb5bd", //gray-500
+//       "#495057", //gray-700
+//       "#4B4237",
+//       "#D5A021",
+//       "#EDE7D9",
+//       "#BFDBF7",
+//       "#732C2C",
+//       "#420C14 ",
+//       "#FFF",
+//       "#000",
+//     ],
+//     defaultColor: "#FF1300",
+//     type: "text",
+//   },
+// },
+// LinkTool: {
+//   class: LinkTool,
+//   config: {
+//     endpoint: `/api/${PluginId}/link`,
+//   },
+// },
+
+// header: {
+//   class: Header,
+//   inlineToolbar: true,
+//   tunes: ["anchorTune"],
+// },
+// quote: {
+//   class: Quote,
+//   inlineToolbar: true,
+//   config: {
+//     quotePlaceholder: "Quote",
+//     captionPlaceholder: "Quote`s author",
+//   },
+// },
